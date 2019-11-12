@@ -1,0 +1,55 @@
+// MinGeun Kim
+// Project 3: save the number into heap memory
+// CS 17
+// Oct 9, 2019
+
+program KimMProj3CS17;
+
+#include ("stdlib.hhf");
+
+var
+	startPtrMem:	int32;
+	value:			int32;
+	cnt:			int8;
+	
+begin KimMProj3CS17;
+	
+	stdout.put ("MinGeun Kim - Project 3", nl);
+	stdout.newln();
+	
+	mem.alloc (1000);				//allocate memories
+	mov (EAX, startPtrMem);
+	
+	stdout.put ("Enter a positive number, 0 to stop: ");	//get a first number from user
+	stdin.get (value);
+	
+	mov (0, cnt);
+	
+	while (value != 0)	do			//get numbers from user
+		mov( value, [EAX]);
+		add(4, EAX);
+		inc (cnt);
+		
+		stdout.put ("Enter a positive number, 0 to stop: ");
+		stdin.get (value);
+	endwhile;
+	
+	stdout.newln();
+	
+	mov(startPtrMem, EAX);
+	
+	for (mov(0, CL); CL < cnt; inc(CL))	do	//print saved number in heap memory
+		mov ([EAX], value);
+		stdout.put (value);
+		stdout.put (" ");
+		add (4, EAX);
+	endfor;
+	
+	stdout.newln();
+	stdout.newln();
+	stdout.put ("MinGeun Kim - End of Project 3", nl);
+	
+	mov (startPtrMem, EAX);
+	mem.free (EAX);				//release memories
+
+end KimMProj3CS17;

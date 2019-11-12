@@ -1,0 +1,60 @@
+program KimMProj4CS17;
+
+#include ("stdlib.hhf");
+
+const NumOfElements := 18;
+
+static
+	DataToSort: uns32	[NumOfElements]	:= [99,50,12,65,89,41,15,68,97,48,11,2,49,88,73,50,16,54];
+	max: 	uns32;
+	lastIndex:	uns32 := NumOfElements - 1;
+	temp:		uns32;
+	
+begin KimMProj4CS17;
+	
+	stdout.put ("MinGeun Kim - Project 4 Selection Sort", nl);
+	stdout.newln();
+	
+	stdout.put ("Selection Sort, Number of Array Elements: ", NumOfElements, nl);
+	
+	stdout.put("Original Array Elements:", nl);
+	
+	for (mov(0, EBX); EBX < NumOfElements; INC(EBX)) do			//print original data
+		stdout.puti32Size (DataToSort[EBX*4], 4, ' ');
+	endfor;
+	
+	stdout.newln();
+	stdout.newln();
+	
+	stdout.put("Sorting...", nl);
+	
+	while(lastIndex > 0)	do									//Sorting
+		mov(0, EDX);	//EDX is max index
+		
+		for(mov (0, ECX); ECX <= lastIndex; INC(ECX))	do		//find maximum
+			mov(DataToSort[EDX*4], EAX);
+			if(EAX < DataToSort[ECX*4])	then
+				mov(ECX, EDX);
+			endif;
+		endfor;
+		
+		//change maximum number and last number
+		mov(lastIndex, EAX);
+		mov(DataToSort[EDX*4], temp);
+		mov(DataToSort[EAX*4], DataToSort[EDX*4]);
+		mov(temp, DataToSort[EAX*4]);
+		
+		for(mov (0, ECX); ECX < NumOfElements; INC(ECX))	do	//print sorted datas
+			stdout.puti32Size	(DataToSort[ECX*4], 4, ' ');
+		endfor;
+		
+		dec(lastIndex);
+		
+		stdout.newln();
+	
+	endwhile;
+	
+	stdout.newln();
+	stdout.put ("MinGeun Kim - End of Project 4", nl);
+	
+end KimMProj4CS17;

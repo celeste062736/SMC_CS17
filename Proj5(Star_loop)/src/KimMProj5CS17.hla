@@ -1,0 +1,154 @@
+// MinGeun Kim
+// Project 5: Print 7 Patterns of Stars
+// CS 17
+// November 11, 2019
+
+program KimMProj5CS17;
+
+#include ("stdlib.hhf");
+
+var
+	numOfStars:		int8;
+	
+begin KimMProj5CS17;
+
+	stdout.put ("MinGeun Kim - Project 5 Stars", nl);
+	stdout.newln();
+
+	stdout.put ("Enter a positive number, 5 to 10: ");		//get number from user
+	stdin.get (numOfStars);
+	
+	stdout.newln();
+	
+	// Shape A
+	stdout.put ("A", nl);
+	
+	for (MOV(0, AL); AL < numOfStars; INC(AL))	do
+		for (MOV(0, BL); BL <= AL; INC(BL))	do
+			stdout.put("* ");
+		endfor;
+		
+		stdout.newln();
+	endfor;
+	
+	stdout.newln();
+	
+	// Shape B
+	
+	stdout.put ("B", nl);
+	
+	for (MOV(numOfStars, AL); AL > 0; DEC(AL))	do
+		for (MOV(0, BL); BL < AL; INC(BL))	do
+			stdout.put("* ");
+		endfor;
+		
+		stdout.newln();
+	endfor;
+	
+	stdout.newln();
+	
+	// Shape C
+	
+	stdout.put ("C", nl);
+	
+	for (MOV(numOfStars, AL); AL > 0; DEC(AL))	do
+		MOV (numOfStars, CL);
+		SUB (AL, CL);
+		for (MOV(0, BL); BL < CL; INC(BL))	do
+			stdout.put("  ");
+		endfor;
+		
+		for (MOV(0, BL); BL < AL; INC(BL))	do
+			stdout.put("* ");
+		endfor;
+		
+		stdout.newln();
+	endfor;
+	
+	stdout.newln();
+	
+	// Shape D
+	
+	stdout.put ("D", nl);
+	
+	for (MOV(0, AL); AL < numOfStars; INC(AL))	do
+		MOV (numOfStars, CL);
+		SUB (AL, CL);
+		DEC (CL);
+		for (MOV(0, BL); BL < CL; INC(BL))	do
+			stdout.put("  ");
+		endfor;
+		
+		for (MOV(0, BL); BL <= AL; INC(BL))	do
+			stdout.put("* ");
+		endfor;
+		
+		stdout.newln();
+	endfor;
+	
+	stdout.newln();
+	
+	// Shape E
+	
+	stdout.put ("E", nl);
+	
+	for (MOV(0, AL); AL < numOfStars; INC(AL))	do
+		MOV (numOfStars, CL);
+		SUB (AL, CL);
+		DEC (CL);
+		for (MOV(0, BL); BL < CL; INC(BL))	do
+			stdout.put("  ");
+		endfor;
+		
+		stdout.put("*");
+		
+		stdout.newln();
+	endfor;
+	
+	stdout.newln();
+	
+	// Shape F
+	
+	stdout.put ("F", nl);
+	
+	for (MOV(numOfStars, AL); AL > 0; DEC(AL))	do
+		MOV (numOfStars, CL);
+		SUB (AL, CL);
+		for (MOV(0, BL); BL < CL; INC(BL))	do
+			stdout.put("  ");
+		endfor;
+		
+		stdout.put("*");
+		
+		stdout.newln();
+	endfor;
+	
+	stdout.newln();
+	
+	// Shape G
+	
+	stdout.put ("G", nl);
+	
+	MOV(numOfStars, DL);
+	DEC(DL);
+	
+	for (MOV(0, AL); AL < numOfStars; INC(AL))	do
+		MOV (DL, CL);
+		SUB (AL, CL);
+		for (MOV(0, BL); BL < numOfStars; INC(BL))	do
+			if ((BL == AL)||(BL == CL))	then
+				stdout.put("* ");
+			else
+				stdout.put("  ");
+			endif;
+		endfor;
+		
+		stdout.newln();
+	endfor;
+	
+	stdout.newln();
+	
+	stdout.newln();
+	stdout.put ("MinGeun Kim - End of Project 5", nl);
+
+end KimMProj5CS17;
