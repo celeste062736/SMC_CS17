@@ -1,0 +1,23 @@
+// 11.20.2019
+
+program exer15;
+
+#include ("stdlib.hhf");
+
+static
+	i: int32;
+	N: int32 := 10;
+	
+begin exer15;
+	MOV (i, EBX);
+	MOV (N, ECX);
+	ForLoop:CMP(EBX, ECX);
+			JAE Continue1;
+			stdout.put (EBX, nl);
+			INC (EBX);
+			JMP ForLoop;
+	Continue1:	stdout.put ("Terminate for loop", nl);
+
+end exer15;
+
+

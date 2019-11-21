@@ -1,0 +1,36 @@
+// 11.20.2019
+// Exercise Case C
+
+program exer19;
+
+#include ("stdlib.hhf");
+
+static
+	a: int32 := 20;
+	b: int32 := 10;
+	X: int32 := 1;
+	Y: int32 := 2;
+	
+begin exer19;
+	MOV (X, EAX);
+	CMP (EAX, 1);
+	JNE ELSE1;
+	MOV (Y, EAX);
+	CMP (EAX, 1);
+	JNE ELSE2;
+	MOV (1, a);
+	JMP Contin;
+	ELSE2: MOV (2, a);
+	JMP Contin;
+	ELSE1: MOV (Y, EAX);
+	CMP (EAX, 1);
+	JNE ELSE3;
+	MOV (3, a);
+	JMP Contin;
+	ELSE3: MOV (4, a);
+	Contin:	stdout.put ("Done.", nl);
+	stdout.put (a);
+
+end exer19;
+
+

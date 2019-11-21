@@ -1,0 +1,27 @@
+// 11.20.2019
+// Chap note 7 page 11 OR (exercise)
+program exer16;
+
+#include ("stdlib.hhf");
+
+static
+	a: int32 := 20;
+	b: int32 := 10;
+	X: int32 := 5;
+	Y: int32 := 5;
+	
+begin exer16;
+	MOV (a, EAX);
+	CMP (EAX, b);
+	JNL AFTER_IF;
+	stdout.put ("Statement", nl);
+	JMP Contin;
+	AFTER_IF: MOV (X, EAX);
+	CMP (EAX, Y);
+	JNE Contin;
+	stdout.put ("Statement", nl);
+	Contin:	stdout.put ("Done.", nl);
+
+end exer16;
+
+
