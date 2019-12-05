@@ -1,0 +1,75 @@
+// MinGeun Kim
+// Project 6: Sorting Program with Pure Assembly
+// CS 17
+// December 4, 2019
+
+program KimMProj6CS17;
+
+#include ("stdlib.hhf");
+
+const NumOfElements := 18;
+
+static
+	DataToSort: int32	[NumOfElements]	:= [33,88,77,1,15,72,18,8,3,43,25,53,48,65,74,90,14,9];
+	max: 		int32;
+	lastIndex:	int32 := NumOfElements - 1;
+	temp:		int32;
+	
+begin KimMProj6CS17;
+			stdout.put ("MinGeun Kim - Project 6 Selection Sort", nl);
+			stdout.newln();
+			stdout.put ("Selection Sort, Number of Array Elements: ", NumOfElements, nl);
+			stdout.put("Original Array Elements:", nl);
+			
+			mov(0, EBX);
+ForLoop1:	CMP(EBX, NumOfElements);							//Print Original Array
+			JAE EndFor1;
+			stdout.puti32Size (DataToSort[EBX*4], 4, ' ');
+			INC(EBX);
+			JMP ForLoop1;
+			
+EndFor1:	stdout.newln();
+			stdout.newln();
+			stdout.put("Sorting...", nl);
+			
+WhileLoop1:	mov (0, EAX);										//Sorting
+			CMP(EAX, lastIndex);
+			JAE EndWhile1;
+			mov(0, EDX);
+			
+			mov(0, ECX);
+ForLoop2:	CMP(ECX, lastIndex);								//Find maximum and move
+			JA EndFor2;
+			
+			mov(DataToSort[EDX*4], EAX);
+If1:		CMP(EAX, DataToSort[ECX*4]);
+			JAE EndIf1;
+			mov(ECX, EDX);
+			
+EndIf1:		INC(ECX);
+			JMP ForLoop2;
+		
+EndFor2:	mov(lastIndex, EAX);								//Change maximum number and last number
+			mov(DataToSort[EDX*4], temp);
+			mov(DataToSort[EAX*4], DataToSort[EDX*4]);
+			mov(temp, DataToSort[EAX*4]);
+			
+			mov(0, ECX);
+ForLoop3:	CMP(ECX, NumOfElements);							//Print sorted Array
+			JAE EndFor3;
+			stdout.puti32Size(DataToSort[ECX*4], 4, ' ');		
+			INC(ECX);
+			JMP ForLoop3;
+			
+EndFor3:	dec(lastIndex);
+		
+			stdout.newln();
+			
+			JMP WhileLoop1;
+			
+EndWhile1:	stdout.newln();
+			stdout.put ("MinGeun Kim - End of Project 6", nl);
+			
+end KimMProj6CS17;
+
+
